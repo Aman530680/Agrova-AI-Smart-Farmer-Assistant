@@ -26,18 +26,13 @@ export default function LanguageSelect() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const currentLanguage = useAppSelector((state) => state.settings.language)
-  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
 
   const handleSelectLanguage = (code: string) => {
     dispatch(setLanguage(code))
   }
 
   const handleConfirm = () => {
-    if (isAuthenticated) {
-      navigate('/dashboard')
-    } else {
-      navigate('/login')
-    }
+    navigate('/dashboard')
   }
 
   return (

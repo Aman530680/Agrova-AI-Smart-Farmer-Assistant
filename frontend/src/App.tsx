@@ -1,11 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { useAppSelector } from './store'
 
 // Global Pages
 import Landing from './pages/Landing'
 import LanguageSelect from './pages/LanguageSelect'
-import Login from './pages/Login'
-import Register from './pages/Register'
 
 // Layout & Dashboard
 import DashboardLayout from './layouts/DashboardLayout'
@@ -19,16 +16,6 @@ import MarketModule from './pages/modules/MarketModule'
 import CropModule from './pages/modules/CropModule'
 import SchemesModule from './pages/modules/SchemesModule'
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />
-}
-
-function PublicOnlyRoute({ children }: { children: React.ReactNode }) {
-  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
-  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <>{children}</>
-}
-
 export default function App() {
   return (
     <Router>
@@ -37,33 +24,8 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/language" element={<LanguageSelect />} />
 
-        {/* Authentication Routes (Public Only) */}
-        <Route
-          path="/login"
-          element={
-            <PublicOnlyRoute>
-              <Login />
-            </PublicOnlyRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicOnlyRoute>
-              <Register />
-            </PublicOnlyRoute>
-          }
-        />
-
-        {/* Protected Dashboard Area */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout />
-            </ProtectedRoute>
-          }
-        >
+        {/* Main Dashboard Area */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
           {/* Index Dashboard page */}
           <Route index element={<Dashboard />} />
 
