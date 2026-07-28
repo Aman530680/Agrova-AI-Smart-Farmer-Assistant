@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: ageova_kisan_mitra_backend
+    restart: always
+    environment:
+      - USE_IN_MEMORY_STORE=true
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-1440}
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: ageova_kisan_mitra_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-outfit: 'Outfit', sans-serif;
+    
+    /* Sleek Agriculture theme - Light Mode (Warm earth, vibrant greens) */
+    --background: 40 33% 98%;
+    --foreground: 120 40% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 120 40% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 40% 10%;
+    
+    --primary: 142 76% 36%;
+    --primary-foreground: 355.7 100% 97.3%;
+    
+    --secondary: 40 60% 92%;
+    --secondary-foreground: 142 76% 15%;
+    
+    --muted: 40 20% 90%;
+    --muted-foreground: 120 15% 40%;
+    
+    --accent: 45 90% 45%;
+    --accent-foreground: 45 90% 10%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 142 20% 88%;
+    --input: 142 20% 88%;
+    --ring: 142 76% 36%;
+    
+    --radius: 0.75rem;
+  }
+ 
+  .dark {
+    /* Premium Dark Mode - Deep Forest Green and Glassmorphic Golds */
+    --background: 140 30% 6%;
+    --foreground: 140 20% 95%;
+    
+    --card: 140 25% 9%;
+    --card-foreground: 140 20% 95%;
+    
+    --popover: 140 25% 8%;
+    --popover-foreground: 140 20% 95%;
+    
+    --primary: 142 70% 45%;
+    --primary-foreground: 140 30% 6%;
+    
+    --secondary: 140 20% 14%;
+    --secondary-foreground: 142 70% 85%;
+    
+    --muted: 140 15% 15%;
+    --muted-foreground: 140 10% 70%;
+    
+    --accent: 45 85% 50%;
+    --accent-foreground: 140 30% 6%;
+    
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 140 15% 18%;
+    --input: 140 15% 18%;
+    --ring: 142 70% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: var(--font-outfit), sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+/* Custom premium design classes */
+.glass {
+  background: rgba(13, 27, 18, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.glow-green {
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.15);
+}
+
+.glow-gold {
+  box-shadow: 0 0 25px rgba(234, 179, 8, 0.15);
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

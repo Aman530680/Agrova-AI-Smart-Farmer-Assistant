@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.development
+.env.production
+
+# Python
+venv/
+.venv/
+ENV/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Database
+pgdata/
+
+# IDE & System
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db

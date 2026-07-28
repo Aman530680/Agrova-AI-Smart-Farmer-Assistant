@@ -1,0 +1,60 @@
+{
+  "landing": {
+    "welcome": "Welcome to Agrova AI Farmer Query",
+    "tagline": "AI-Powered Smart Agriculture Platform",
+    "continue": "Get Started",
+    "greeting_en": "Welcome",
+    "greeting_hi": "स्वागत है",
+    "greeting_ta": "வரவேற்கிறோம்",
+    "greeting_te": "స్వాగతం",
+    "greeting_kn": "ಸ್ವಾಗತ",
+    "greeting_ml": "സ്വാഗതം",
+    "greeting_mr": "स्वागत आहे",
+    "greeting_gu": "સ્વાગત છે",
+    "greeting_bn": "স্বাগতম",
+    "greeting_pa": "ਜੀ ਆਇਆਂ ਨੂੰ",
+    "greeting_as": "স্বাগতম",
+    "greeting_or": "ସ୍ୱาଗତ",
+    "greeting_ur": "خوش آمدید"
+  },
+  "language": {
+    "select": "Choose Your Language",
+    "current": "English"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "home": "Home"
+  },
+  "modules": {
+    "chatbot": {
+      "title": "AI Chatbot",
+      "desc": "Ask farm-related queries, upload files or images, and get instant guidance.",
+      "placeholder": "Ask something..."
+    },
+    "pest": {
+      "title": "Pest Management",
+      "desc": "Identify crop diseases and get organic & chemical solutions.",
+      "placeholder": "Describe symptoms or upload image..."
+    },
+    "weather": {
+      "title": "Weather Forecast",
+      "desc": "Get current weather conditions and farming recommendations.",
+      "placeholder": "Search city..."
+    },
+    "market": {
+      "title": "Market Prices",
+      "desc": "Compare commodity prices across regional markets.",
+      "placeholder": "Search commodity..."
+    },
+    "crop": {
+      "title": "Crop Tracker",
+      "desc": "Create personalized crop lifecycle calendars with alerts.",
+      "placeholder": "Select crop..."
+    },
+    "schemes": {
+      "title": "Govt Schemes",
+      "desc": "Explore central and state schemes for agricultural benefits."
+    }
+  }
+}
