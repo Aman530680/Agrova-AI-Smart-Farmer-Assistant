@@ -44,13 +44,18 @@ docker compose up --build
 
 ## Deploy on Vercel
 
-This repository includes a root `vercel.json` for the two-service deployment:
+Deploy only the `frontend/` folder to Vercel. In the Vercel project settings use:
 
-- `frontend/` is deployed as the Vite web service.
-- `backend/` is deployed as the FastAPI web service.
-- `/api/*` is routed to FastAPI and all other paths are routed to the React frontend.
+- **Root Directory:** `frontend`
+- **Framework Preset:** `Vite`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
 
-In Vercel, import the repository with the repository root as the project root. Add the backend environment variables to the backend service, including `GEMINI_API_KEY`, `OPENWEATHER_API_KEY`, `JWT_SECRET`, and any database settings required by your deployment. The frontend can use the same-origin `/api` path through the included rewrites, so `VITE_API_URL` does not need to be set for this multi-service setup.
+The frontend includes `frontend/vercel.json` for React Router routes. Do not configure `backend/` as a Vercel service. For API features, add `VITE_API_URL` in Vercel and point it to a separately hosted FastAPI backend, for example:
+
+```env
+VITE_API_URL=https://your-backend-domain.example.com/api
+```
 
 ## Environment Variables
 Create a `.env` file in the project root with values such as:
