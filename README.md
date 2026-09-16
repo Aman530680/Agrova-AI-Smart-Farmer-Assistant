@@ -42,6 +42,16 @@ uvicorn app.main:app --reload
 docker compose up --build
 ```
 
+## Deploy on Vercel
+
+This repository includes a root `vercel.json` for the two-service deployment:
+
+- `frontend/` is deployed as the Vite web service.
+- `backend/` is deployed as the FastAPI web service.
+- `/api/*` is routed to FastAPI and all other paths are routed to the React frontend.
+
+In Vercel, import the repository with the repository root as the project root. Add the backend environment variables to the backend service, including `GEMINI_API_KEY`, `OPENWEATHER_API_KEY`, `JWT_SECRET`, and any database settings required by your deployment. The frontend can use the same-origin `/api` path through the included rewrites, so `VITE_API_URL` does not need to be set for this multi-service setup.
+
 ## Environment Variables
 Create a `.env` file in the project root with values such as:
 
