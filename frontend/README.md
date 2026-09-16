@@ -1,5 +1,22 @@
 # React + TypeScript + Vite
 
+## Deploy on Vercel
+
+Create a Vercel project from this repository with these settings:
+
+- **Root Directory:** `frontend`
+- **Framework Preset:** `Vite`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+
+Add this environment variable in Vercel for production API requests:
+
+```text
+VITE_API_URL=https://your-backend-domain.example.com/api
+```
+
+The included `vercel.json` rewrites all client-side routes, such as `/dashboard` and `/language`, to the React app entry point. The backend must be deployed separately and configured to allow the Vercel domain through CORS.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:
