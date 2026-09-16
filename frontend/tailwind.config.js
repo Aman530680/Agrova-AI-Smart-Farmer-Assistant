@@ -14,6 +14,17 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        outfit: ['"Plus Jakarta Sans"', 'Outfit', 'sans-serif'],
+      },
+      boxShadow: {
+        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.08)',
+        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.25), 0 2px 6px -1px rgba(0, 0, 0, 0.15)',
+        'card-hover': '0 12px 32px -4px rgba(0, 0, 0, 0.35), 0 4px 12px -2px rgba(0, 0, 0, 0.2)',
+        'emerald-glow': '0 0 0 1px rgba(34, 197, 94, 0.2), 0 8px 24px -4px rgba(22, 163, 74, 0.25)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

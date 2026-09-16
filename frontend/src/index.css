@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,110 +6,550 @@
 
 @layer base {
   :root {
-    --font-outfit: 'Outfit', sans-serif;
-    
-    /* Sleek Agriculture theme - Light Mode (Warm earth, vibrant greens) */
-    --background: 40 33% 98%;
-    --foreground: 120 40% 10%;
-    
-    --card: 0 0% 100%;
-    --card-foreground: 120 40% 10%;
-    
+    --font-display: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-outfit: var(--font-display);
+
+    /* Handcrafted Botanical Agriculture Theme - Light Mode (Warm earth, living foliage, sunlit wheat) */
+    --background: 60 14% 97%;          /* #FAF9F5 Warm linen alabaster */
+    --foreground: 152 42% 11%;         /* #10271B Deep botanical charcoal */
+
+    --card: 0 0% 100%;                 /* Pure white crisp surface */
+    --card-foreground: 152 42% 11%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 120 40% 10%;
-    
-    --primary: 142 76% 36%;
-    --primary-foreground: 355.7 100% 97.3%;
-    
-    --secondary: 40 60% 92%;
-    --secondary-foreground: 142 76% 15%;
-    
-    --muted: 40 20% 90%;
-    --muted-foreground: 120 15% 40%;
-    
-    --accent: 45 90% 45%;
-    --accent-foreground: 45 90% 10%;
-    
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    
-    --border: 142 20% 88%;
-    --input: 142 20% 88%;
-    --ring: 142 76% 36%;
-    
-    --radius: 0.75rem;
+    --popover-foreground: 152 42% 11%;
+
+    --primary: 152 68% 34%;            /* #1B8A52 Rich authoritative emerald */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 60 18% 92%;           /* #ECECE4 Warm stone */
+    --secondary-foreground: 152 50% 18%;
+
+    --muted: 60 12% 93%;               /* #EEEEEC Subtle muted background */
+    --muted-foreground: 152 14% 42%;   /* #5A7063 Clear readable sage */
+
+    --accent: 38 88% 46%;              /* #DB820D Harvest golden amber */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 152 14% 87%;             /* #DCE4DF Refined organic border */
+    --input: 152 14% 87%;
+    --ring: 152 68% 34%;
+
+    --radius: 1rem;
   }
- 
+
   .dark {
-    /* Premium Dark Mode - Deep Forest Green and Glassmorphic Golds */
-    --background: 140 30% 6%;
-    --foreground: 140 20% 95%;
-    
-    --card: 140 25% 9%;
-    --card-foreground: 140 20% 95%;
-    
-    --popover: 140 25% 8%;
-    --popover-foreground: 140 20% 95%;
-    
-    --primary: 142 70% 45%;
-    --primary-foreground: 140 30% 6%;
-    
-    --secondary: 140 20% 14%;
-    --secondary-foreground: 142 70% 85%;
-    
-    --muted: 140 15% 15%;
-    --muted-foreground: 140 10% 70%;
-    
-    --accent: 45 85% 50%;
-    --accent-foreground: 140 30% 6%;
-    
-    --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 210 40% 98%;
-    
-    --border: 140 15% 18%;
-    --input: 140 15% 18%;
-    --ring: 142 70% 45%;
+    /* Handcrafted Obsidian Forest Theme - Dark Mode (Deep moss slate, living emerald, radiant gold) */
+    --background: 148 30% 5.5%;        /* #0A120D Obsidian botanical slate */
+    --foreground: 145 18% 95%;         /* #F0F4F2 Crisp warm ivory */
+
+    --card: 148 24% 8.5%;              /* #111D15 Handcrafted slate well */
+    --card-foreground: 145 18% 95%;
+
+    --popover: 148 26% 8%;
+    --popover-foreground: 145 18% 95%;
+
+    --primary: 148 70% 46%;            /* #25C667 Natural botanical emerald */
+    --primary-foreground: 148 35% 6%;
+
+    --secondary: 148 18% 13%;          /* #19271F Layered surface */
+    --secondary-foreground: 148 65% 82%;
+
+    --muted: 148 16% 12%;              /* #17241D */
+    --muted-foreground: 146 12% 64%;   /* #97A89F Highly readable soft sage */
+
+    --accent: 40 92% 52%;              /* #F5A614 Sunlit harvest amber */
+    --accent-foreground: 148 35% 6%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 148 16% 15%;             /* #1B2C21 Clean, subtle border */
+    --input: 148 16% 15%;
+    --ring: 148 70% 46%;
   }
 }
 
 @layer base {
-  * {
+  *, ::before, ::after {
     @apply border-border;
-    font-family: var(--font-outfit), sans-serif;
+    box-sizing: border-box;
   }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
     @apply bg-background text-foreground transition-colors duration-300;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+
+  /* Refined typography scale */
+  p, span, li, button, input, textarea, select {
+    letter-spacing: 0;
+  }
+
+  /* Numerical tabular layout */
+  .tabular-nums, [data-tabular] {
+    font-variant-numeric: tabular-nums;
+  }
 }
 
-/* Custom premium design classes */
+/* Final light-only product layer. These rules intentionally stay scoped to
+   the app shell so legacy utility selectors cannot change the visual language. */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html,
+body {
+  background: #f7faf5;
+  color: #183122;
+}
+
+html.dark {
+  color-scheme: light;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(22, 101, 52, 0.28);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Atmospheric Handcrafted Backgrounds (No Empty Void / No Cheap Blobs)
+   ========================================================================== */
+
+/* Atmospheric entry-page backgrounds. Keep this explicit so utility classes stay predictable. */
+.landing-atmosphere {
+  background-color: #f7faf5;
+  background-image:
+    radial-gradient(80% 55% at 50% 0%, rgba(87, 164, 73, 0.16), transparent 72%),
+    radial-gradient(circle at 1px 1px, rgba(63, 139, 74, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px;
+}
+
+.landing-page header {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(20, 48, 30, 0.08) !important;
+}
+
+/* Legacy entry-page background utility, retained for older screens. */
+div[class*="bg-[radial-gradient"] {
+  background-color: #080E0A !important;
+  background-image: 
+    /* Ambient botanical spotlight */
+    radial-gradient(135% 100% at 50% 0%, rgba(24, 68, 42, 0.42) 0%, rgba(13, 30, 20, 0.7) 40%, rgba(8, 14, 10, 0.98) 100%),
+    /* Micro topographical/organic tactile texture */
+    radial-gradient(circle at 1px 1px, rgba(46, 213, 115, 0.08) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 32px 32px !important;
+  background-position: 0 0, 0 0 !important;
+}
+
+:not(.dark) div[class*="bg-[radial-gradient"] {
+  background-color: #F8F9F5 !important;
+  background-image: 
+    radial-gradient(135% 100% at 50% 0%, rgba(34, 197, 94, 0.1) 0%, rgba(240, 245, 241, 0.8) 50%, rgba(248, 249, 245, 1) 100%),
+    radial-gradient(circle at 1px 1px, rgba(20, 80, 45, 0.05) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 32px 32px !important;
+  color: #10271B !important;
+}
+
+/* Subtle, smooth natural ambient glows (No jarring neon blobs) */
+.blur-\[100px\], .blur-\[120px\], .blur-\[80px\] {
+  opacity: 0.65;
+  filter: blur(110px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+:not(.dark) .blur-\[100px\], :not(.dark) .blur-\[120px\], :not(.dark) .blur-\[80px\] {
+  opacity: 0.25;
+  mix-blend-mode: multiply;
+}
+
+/* ==========================================================================
+   Handcrafted Glassmorphic Panels & Physical Surface Elevation
+   ========================================================================== */
+
+/* Dark mode glass: tactile, machined bevel highlight, deep ambient shadow */
 .glass {
-  background: rgba(13, 27, 18, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(150deg, rgba(22, 38, 28, 0.65) 0%, rgba(13, 23, 17, 0.78) 100%);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 12px 36px -4px rgba(0, 0, 0, 0.45),
+    0 2px 8px -2px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+/* Light mode glass: crisp porcelain, warm stone edge, soft layered ambient shadow */
+:not(.dark) .glass, .glass-light {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 248, 0.88) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(20, 48, 30, 0.08);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    0 10px 30px -4px rgba(24, 48, 32, 0.06),
+    0 2px 6px -1px rgba(24, 48, 32, 0.03);
 }
 
+/* Ambient botanical glow: intentional multi-layer shadow, not a flat neon blur */
 .glow-green {
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.15);
+  box-shadow: 
+    0 0 0 1px rgba(34, 197, 94, 0.16),
+    0 8px 24px -4px rgba(20, 110, 60, 0.2),
+    0 20px 48px -8px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+:not(.dark) .glow-green {
+  box-shadow: 
+    0 0 0 1px rgba(22, 163, 74, 0.14),
+    0 6px 20px -3px rgba(22, 163, 74, 0.08),
+    0 16px 36px -6px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
 }
 
 .glow-gold {
-  box-shadow: 0 0 25px rgba(234, 179, 8, 0.15);
+  box-shadow: 
+    0 0 0 1px rgba(245, 158, 11, 0.2),
+    0 8px 24px -4px rgba(245, 158, 11, 0.2),
+    0 20px 48px -8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Hide scrollbars but keep functionality */
+:not(.dark) .glow-gold {
+  box-shadow: 
+    0 0 0 1px rgba(217, 119, 6, 0.15),
+    0 6px 20px -3px rgba(217, 119, 6, 0.08),
+    0 16px 36px -6px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================================================
+   Polished Buttons & Interactive Controls
+   ========================================================================== */
+
+/* Primary CTA buttons: tactile gradient, specular shine, smooth lift */
+button[class*="bg-gradient-to-r"][class*="from-emerald-500"],
+button[class*="bg-emerald-500"]:not([class*="bg-emerald-500/"]) {
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%) !important;
+  color: #061A0E !important;
+  font-weight: 600 !important;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    0 4px 14px -1px rgba(22, 163, 74, 0.32),
+    0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button[class*="bg-gradient-to-r"][class*="from-emerald-500"]:hover,
+button[class*="bg-emerald-500"]:not([class*="bg-emerald-500/"]):hover {
+  transform: translateY(-1.5px);
+  filter: brightness(1.05);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.38),
+    0 8px 22px -2px rgba(22, 163, 74, 0.42),
+    0 2px 6px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+button[class*="bg-gradient-to-r"][class*="from-emerald-500"]:active,
+button[class*="bg-emerald-500"]:not([class*="bg-emerald-500/"]):active {
+  transform: translateY(0.5px) scale(0.99) !important;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(0, 0, 0, 0.15),
+    0 2px 6px -1px rgba(22, 163, 74, 0.3) !important;
+}
+
+/* Secondary & ghost buttons */
+button {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+/* Form Inputs & Textareas */
+input, textarea, select {
+  font-family: var(--font-sans);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: rgba(34, 197, 94, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.14), inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+:not(.dark) input, :not(.dark) textarea, :not(.dark) select {
+  background-color: #FFFFFF !important;
+  border-color: rgba(20, 48, 30, 0.12) !important;
+  color: #10271B !important;
+}
+
+:not(.dark) input::placeholder, :not(.dark) textarea::placeholder {
+  color: #83978B !important;
+}
+
+/* ==========================================================================
+   Dashboard & Sidebar Refinements
+   ========================================================================== */
+
+/* Modern sidebar styling */
+aside {
+  background: linear-gradient(180deg, rgba(13, 22, 16, 0.85) 0%, rgba(9, 16, 12, 0.95) 100%) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+:not(.dark) aside {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAFAF8 100%) !important;
+  border-right: 1px solid rgba(20, 48, 30, 0.08) !important;
+}
+
+/* Active navigation item in sidebar: refined pill with subtle inner highlight */
+aside button[class*="from-emerald-500"][class*="to-emerald-600"] {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.12) 100%) !important;
+  color: #34D399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.28) !important;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+aside button[class*="from-emerald-500"][class*="to-emerald-600"] svg {
+  color: #34D399 !important;
+}
+
+:not(.dark) aside button[class*="from-emerald-500"][class*="to-emerald-600"] {
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.14) 0%, rgba(22, 163, 74, 0.08) 100%) !important;
+  color: #15803D !important;
+  border: 1px solid rgba(22, 163, 74, 0.24) !important;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+:not(.dark) aside button[class*="from-emerald-500"][class*="to-emerald-600"] svg {
+  color: #15803D !important;
+}
+
+/* Inactive sidebar links */
+aside nav button:not([class*="from-emerald-500"]) {
+  color: #94A69B;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+aside nav button:not([class*="from-emerald-500"]):hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+  transform: translateX(2px);
+}
+
+:not(.dark) aside nav button:not([class*="from-emerald-500"]) {
+  color: #556B5E;
+}
+
+:not(.dark) aside nav button:not([class*="from-emerald-500"]):hover {
+  background: rgba(22, 163, 74, 0.06) !important;
+  color: #10271B !important;
+  transform: translateX(2px);
+}
+
+/* Header toolbar */
+header {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+:not(.dark) header {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(20, 48, 30, 0.08) !important;
+}
+
+html:not(.dark) .landing-page header {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom-color: rgba(20, 48, 30, 0.08) !important;
+}
+
+/* ==========================================================================
+   Dashboard Module Cards Refinement
+   ========================================================================== */
+
+/* Ensure module card titles and texts are visible and vibrant in both themes */
+:not(.dark) .grid button h2,
+:not(.dark) .grid h2.text-white,
+:not(.dark) h2.text-white {
+  color: #10271B !important;
+}
+
+:not(.dark) .text-neutral-400 {
+  color: #5E7366 !important;
+}
+
+:not(.dark) .text-neutral-300 {
+  color: #384F41 !important;
+}
+
+:not(.dark) .text-neutral-500 {
+  color: #798D80 !important;
+}
+
+/* Individual module cards: handcrafted border, subtle elevation, micro-hover */
+.grid button[class*="rounded-2xl"][class*="border"] {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 18px -2px rgba(0, 0, 0, 0.28),
+    0 1px 4px 0 rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.grid button[class*="rounded-2xl"][class*="border"]:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 
+    0 14px 34px -4px rgba(0, 0, 0, 0.42),
+    0 3px 10px 0 rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+:not(.dark) .grid button[class*="rounded-2xl"][class*="border"] {
+  background: #FFFFFF !important;
+  border-color: rgba(20, 48, 30, 0.09) !important;
+  box-shadow: 
+    0 4px 16px -2px rgba(24, 48, 32, 0.05),
+    0 1px 3px 0 rgba(24, 48, 32, 0.03),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+
+:not(.dark) .grid button[class*="rounded-2xl"][class*="border"]:hover {
+  border-color: rgba(22, 163, 74, 0.3) !important;
+  box-shadow: 
+    0 12px 30px -4px rgba(24, 48, 32, 0.09),
+    0 2px 8px 0 rgba(24, 48, 32, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Icon well styling inside module cards */
+:not(.dark) .w-12.h-12.rounded-xl.bg-neutral-950\/60 {
+  background-color: rgba(22, 163, 74, 0.08) !important;
+  border-color: rgba(22, 163, 74, 0.15) !important;
+}
+
+/* Card footer "Launch Tool" arrow animation */
+.grid button:hover .group svg,
+.grid button:hover svg[class*="group-hover:translate-x"] {
+  transform: translateX(4px) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* ==========================================================================
+   Language Selection & Other Page Refinements
+   ========================================================================== */
+
+/* Language tile buttons */
+.grid button[class*="rounded-2xl"][class*="border"][class*="text-left"] {
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grid button[class*="rounded-2xl"][class*="border"][class*="text-left"]:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+:not(.dark) .grid button[class*="rounded-2xl"][class*="border"][class*="text-left"] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(20, 48, 30, 0.09) !important;
+}
+
+:not(.dark) .grid button[class*="rounded-2xl"][class*="border"][class*="text-left"] h2 {
+  color: #10271B !important;
+}
+
+/* Clean minimal scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.4);
+}
+
+:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(20, 48, 30, 0.15);
+}
+
+:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(22, 163, 74, 0.4);
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ==========================================================================
+   Subtle Micro-Animations
+   ========================================================================== */
+
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 4s ease-in-out infinite;
+}
+
+/* High-contrast accessible focus visible rings */
+*:focus-visible {
+  outline: 2px solid rgba(34, 197, 94, 0.6);
+  outline-offset: 2px;
 }

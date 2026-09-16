@@ -3,14 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import i18n from '../../i18n/config'
 
 interface SettingsState {
-  theme: 'light' | 'dark'
+  theme: 'light'
   language: string
-}
-
-const getInitialTheme = (): 'light' | 'dark' => {
-  const saved = localStorage.getItem('theme') as 'light' | 'dark'
-  if (saved) return saved
-  return 'dark' // Default to dark for rich aesthetics
 }
 
 const getInitialLanguage = (): string => {
@@ -18,7 +12,7 @@ const getInitialLanguage = (): string => {
 }
 
 const initialState: SettingsState = {
-  theme: getInitialTheme(),
+  theme: 'light',
   language: getInitialLanguage(),
 }
 
@@ -26,14 +20,10 @@ const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    setTheme(state, action: PayloadAction<'light' | 'dark'>) {
-      state.theme = action.payload
-      localStorage.setItem('theme', action.payload)
-      if (action.payload === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+    setTheme(state) {
+      state.theme = 'light'
+      localStorage.setItem('theme', 'light')
+      document.documentElement.classList.remove('dark')
     },
     setLanguage(state, action: PayloadAction<string>) {
       state.language = action.payload

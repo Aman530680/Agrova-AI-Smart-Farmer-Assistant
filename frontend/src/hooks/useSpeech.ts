@@ -35,7 +35,7 @@ export function useSpeech() {
     window.speechSynthesis.cancel()
 
     // Strip markdown formatting symbols for clean narration
-    const cleanText = text.replace(/[*#`_\-]/g, '')
+    const cleanText = text.replace(/[*#`_-]/g, '')
     const utterance = new SpeechSynthesisUtterance(cleanText)
     utterance.lang = getLanguageLocale(langCode)
     

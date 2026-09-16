@@ -1,0 +1,42 @@
+{
+  "landing": { "welcome": "Bienvenue sur Agrova AI", "tagline": "Agriculture intelligente", "continue": "Continuer" },
+  "language": { "select": "Choisissez votre langue", "current": "Français" },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion",
+    "home": "Accueil",
+    "kisanMitra": "Kisan Mitra",
+    "cropDoctor": "Docteur cultures IA",
+    "weather": "Météo",
+    "market": "Prix du marché",
+    "crop": "Cycle cultural",
+    "schemes": "Aides publiques",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "myFarm": "Ma ferme",
+    "notifications": "Notifications"
+  },
+  "dashboard": {
+    "greeting": "Bonjour",
+    "activeCrop": "Culture active",
+    "weather": "Météo",
+    "market": "Prix du marché",
+    "health": "Santé des cultures",
+    "healthy": "Saine",
+    "weatherOverview": "Aperçu météo",
+    "cropHealth": "Santé des cultures",
+    "marketTrend": "Tendance des prix",
+    "lifecycle": "Progression du cycle",
+    "recs": "Recommandations IA",
+    "activity": "Activité récente",
+    "alerts": "Alertes agricoles"
+  },
+  "modules": {
+    "chatbot": { "title": "Kisan Mitra", "desc": "Compagnon agricole IA", "placeholder": "Posez une question..." },
+    "pest": { "title": "Docteur cultures IA", "desc": "Diagnostic", "placeholder": "Symptômes..." },
+    "weather": { "title": "Météo", "desc": "Prévisions", "placeholder": "Ville..." },
+    "market": { "title": "Prix du marché", "desc": "Mandi", "placeholder": "Produit..." },
+    "crop": { "title": "Cycle cultural", "desc": "Calendrier", "placeholder": "Culture..." },
+    "schemes": { "title": "Aides publiques", "desc": "Subventions" }
+  }
+}

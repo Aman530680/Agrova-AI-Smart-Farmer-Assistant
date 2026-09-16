@@ -6,6 +6,11 @@ import { store } from './store'
 import './i18n/config'
 import './index.css'
 import App from './App.tsx'
+import { ToastProvider } from './components/ui/Toast'
+
+const savedTheme = localStorage.getItem('theme') || 'light'
+document.documentElement.classList.remove('dark')
+if (savedTheme !== 'light') localStorage.setItem('theme', 'light')
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +25,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </QueryClientProvider>
     </Provider>
   </StrictMode>,

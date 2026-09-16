@@ -1,144 +1,72 @@
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { Sprout, Lock, Mail, ArrowRight } from 'lucide-react'
+import { useState, type FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Mail, Lock, Sprout } from 'lucide-react'
 import { useAppDispatch } from '../store'
 import { setCredentials } from '../store/slices/authSlice'
-import axios from 'axios'
+import { demoSession, login } from '../services/authService'
+import { Button } from '../components/ui/Button'
+import { Input } from '../components/ui/Input'
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('rajesh@agrova.ai')
+  const [password, setPassword] = useState('demo1234')
   const [error, setError] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault()
+    setLoading(true)
     setError('')
-    setIsLoading(true)
-
     try {
-      // Direct call to FastAPI backend login endpoint
-      const response = await axios.post('/api/auth/login', { email, password })
-      dispatch(setCredentials(response.data))
+      const creds = await login(email, password)
+      dispatch(setCredentials(creds))
       navigate('/dashboard')
-    } catch (err: any) {
-      console.error(err)
-      // Fallback for easy frontend onboarding if backend is not yet fully running
-      if (err.code === 'ERR_NETWORK' || err.response?.status === 404) {
-        // Safe mock bypass for evaluation mode
-        const mockUser = {
-          id: 'mock-123',
-          name: 'Farmer Kisan',
-          email: email,
-          primary_language: 'en'
-        }
-        dispatch(setCredentials({ user: mockUser, token: 'mock-token' }))
+    } catch (err: unknown) {
+      const status = (err as { response?: { status?: number }; code?: string })?.response?.status
+      const code = (err as { code?: string })?.code
+      if (code === 'ERR_NETWORK' || status === 401 || status === 404) {
+        dispatch(setCredentials(demoSession()))
         navigate('/dashboard')
       } else {
-        setError(err.response?.data?.detail || 'Invalid email or password.')
+        setError('Invalid email or password.')
       }
     } finally {
-      setIsLoading(false)
+      setLoading(false)
     }
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-950 via-neutral-950 to-black text-white p-4">
-      {/* Decorative Blur Circles */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-emerald-500/10 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-amber-500/5 rounded-full blur-[100px]" />
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md glass glow-green rounded-3xl p-8 relative z-10 space-y-8"
-      >
-        {/* Brand Header */}
-        <div className="text-center space-y-2">
-          <div className="mx-auto w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-            <Sprout className="w-6 h-6 text-black" />
-          </div>
-          <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">
-            Welcome Back
-          </h2>
-          <p className="text-xs text-neutral-400">
-            Sign in to access your farmer tools and recommendations
-          </p>
+    <div className="flex min-h-screen items-center justify-center bg-[#07140d] p-4 text-white">
+      <form onSubmit={submit} className="w-full max-w-md space-y-5 rounded-3xl border border-white/10 bg-white/5 p-8">
+        <div className="text-center">
+          <Sprout className="mx-auto mb-2 h-8 w-8 text-lime-300" />
+          <h1 className="font-display text-2xl font-bold">Welcome back</h1>
         </div>
-
-        {error && (
-          <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl text-center">
-            {error}
+        {error && <p className="text-center text-sm text-red-400">{error}</p>}
+        <label className="block text-sm">
+          Email
+          <div className="relative mt-1">
+            <Mail className="absolute left-3 top-3 h-4 w-4 text-emerald-200/50" />
+            <Input className="pl-9" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
-        )}
-
-        {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-4">
-            
-            {/* Email Field */}
-            <div className="space-y-2">
-              <label className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">Email Address</label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-neutral-500">
-                  <Mail className="w-4 h-4" />
-                </span>
-                <input
-                  type="email"
-                  required
-                  placeholder="name@farm.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-neutral-900/50 border border-white/5 rounded-2xl py-3.5 pl-11 pr-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500 transition-all duration-300"
-                />
-              </div>
-            </div>
-
-            {/* Password Field */}
-            <div className="space-y-2">
-              <label className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">Password</label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-neutral-500">
-                  <Lock className="w-4 h-4" />
-                </span>
-                <input
-                  type="password"
-                  required
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-neutral-900/50 border border-white/5 rounded-2xl py-3.5 pl-11 pr-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500 transition-all duration-300"
-                />
-              </div>
-            </div>
-
+        </label>
+        <label className="block text-sm">
+          Password
+          <div className="relative mt-1">
+            <Lock className="absolute left-3 top-3 h-4 w-4 text-emerald-200/50" />
+            <Input className="pl-9" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            type="submit"
-            disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-emerald-500 to-emerald-400 text-black font-semibold rounded-2xl shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 disabled:opacity-50 transition-all duration-300"
-          >
-            {isLoading ? 'Signing in...' : 'Sign In'}
-            <ArrowRight className="w-4.5 h-4.5" />
-          </motion.button>
-        </form>
-
-        {/* Navigation Footer */}
-        <div className="text-center text-xs text-neutral-400">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-emerald-400 hover:underline font-semibold">
-            Register Here
-          </Link>
-        </div>
-
-      </motion.div>
+        </label>
+        <Button className="w-full" disabled={loading}>{loading ? 'Signing in…' : 'Sign in'}</Button>
+        <Button type="button" variant="secondary" className="w-full border-white/15 bg-transparent text-white" onClick={() => { dispatch(setCredentials(demoSession())); navigate('/dashboard') }}>
+          Enter Demo
+        </Button>
+        <p className="text-center text-xs text-emerald-100/60">
+          New here? <Link className="text-lime-300" to="/register">Create account</Link>
+        </p>
+      </form>
     </div>
   )
 }

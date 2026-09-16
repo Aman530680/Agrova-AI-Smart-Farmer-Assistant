@@ -16,6 +16,7 @@ import translationPA from './locales/pa/translation.json'
 import translationAS from './locales/as/translation.json'
 import translationOR from './locales/or/translation.json'
 import translationUR from './locales/ur/translation.json'
+import translationFR from './locales/fr/translation.json'
 
 const resources = {
   en: { translation: translationEN },
@@ -31,6 +32,7 @@ const resources = {
   as: { translation: translationAS },
   or: { translation: translationOR },
   ur: { translation: translationUR },
+  fr: { translation: translationFR },
 }
 
 i18n
