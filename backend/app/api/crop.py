@@ -51,13 +51,10 @@ async def get_schedule(
     """
     Calculates and returns the full sequential farming schedule based on the crop's sowing date.
     """
-    result = await db.execute(
-        select(CropCalendar).where(
-            CropCalendar.id == cal_id,
-            CropCalendar.user_id == current_user.id
-        )
+    cal = next(
+        (item for item in db.crop_calendars.values() if item.get("id") == str(cal_id) and item.get("user_id") == current_user["id"]),
+        None
     )
-    cal = result.scalars().first()
     if not cal:
         raise HTTPException(status_code=404, detail="Crop calendar entry not found.")
         
@@ -79,13 +76,10 @@ async def update_calendar_stage(
     """
     Updates the active growth stage phase of the crop.
     """
-    result = await db.execute(
-        select(CropCalendar).where(
-            CropCalendar.id == cal_id,
-            CropCalendar.user_id == current_user.id
-        )
+    cal = next(
+        (item for item in db.crop_calendars.values() if item.get("id") == str(cal_id) and item.get("user_id") == current_user["id"]),
+        None
     )
-    cal = result.scalars().first()
     if not cal:
         raise HTTPException(status_code=404, detail="Crop calendar entry not found.")
         
@@ -104,16 +98,12 @@ async def delete_calendar(
     """
     Removes a crop tracking entry from the database.
     """
-    result = await db.execute(
-        select(CropCalendar).where(
-            CropCalendar.id == cal_id,
-            CropCalendar.user_id == current_user.id
-        )
+    cal = next(
+        (item for item in db.crop_calendars.values() if item.get("id") == str(cal_id) and item.get("user_id") == current_user["id"]),
+        None
     )
-    cal = result.scalars().first()
     if not cal:
         raise HTTPException(status_code=404, detail="Crop calendar entry not found.")
         
-    if cal:
-        db.crop_calendars.pop(str(cal_id), None)
+    db.crop_calendars.pop(str(cal_id), None)
     return

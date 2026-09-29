@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: agrova-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: USE_IN_MEMORY_STORE
+        value: "false"
+      - key: MONGODB_URI
+        sync: false
+      - key: DATABASE_NAME
+        value: "agrova_kisan_mitra"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: "HS256"
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "1440"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENWEATHER_API_KEY
+        sync: false

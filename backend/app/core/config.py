@@ -17,8 +17,10 @@ class Settings:
     PROJECT_NAME: str = "Agrova AI Farmer Query"
     API_V1_STR: str = "/api"
 
-    # Local persistence
-    USE_IN_MEMORY_STORE: bool = os.getenv("USE_IN_MEMORY_STORE", "true").lower() == "true"
+    # Database Configuration
+    USE_IN_MEMORY_STORE: bool = os.getenv("USE_IN_MEMORY_STORE", "false").lower() == "true"
+    MONGODB_URI: str = os.getenv("MONGODB_URI", "")
+    DATABASE_NAME: str = os.getenv("DATABASE_NAME", "agrova_kisan_mitra")
 
     # JWT Security Settings
     JWT_SECRET: str = os.getenv("JWT_SECRET", "super-secret-key-change-me-in-production")

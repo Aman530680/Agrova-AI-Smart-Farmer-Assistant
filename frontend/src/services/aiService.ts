@@ -1,4 +1,4 @@
-import { getAuthToken } from '../lib/api'
+import { API_BASE_URL, getAuthToken } from '../lib/api'
 import { mockKisanReply } from '../data/chat'
 
 export async function streamChat(
@@ -8,7 +8,7 @@ export async function streamChat(
 ) {
   const token = getAuthToken()
   try {
-    const response = await fetch('/api/chatbot/query', {
+    const response = await fetch(`${API_BASE_URL}/chatbot/query`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
