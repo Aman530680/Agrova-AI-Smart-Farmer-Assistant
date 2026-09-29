@@ -42,3 +42,12 @@ async def root():
 @app.get("/api/health")
 async def health_check():
     return {"status": "healthy"}
+
+@app.get("/api/database/status")
+async def database_status():
+    from app.database import store
+    return {
+        "status": "connected" if getattr(store, "db_type", "") == "mongodb" else "in-memory",
+        "type": getattr(store, "db_type", "in-memory"),
+        "detail": getattr(store, "status_message", "active")
+    }

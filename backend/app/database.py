@@ -17,6 +17,9 @@ DEMO_USER = {
 
 
 class InMemoryStore:
+    db_type = "in-memory"
+    status_message = "Active (Local In-Memory Mode)"
+
     def __init__(self) -> None:
         self.users: Dict[str, Dict[str, Any]] = {
             DEMO_USER_ID: DEMO_USER.copy(),
@@ -69,12 +72,15 @@ class MongoCollectionDict:
 
 class MongoStore:
     """MongoDB Atlas persistent store."""
+    db_type = "mongodb"
+
     def __init__(self, uri: str, db_name: str) -> None:
         import pymongo
         self.client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000)
         # Verify connection
         self.client.admin.command("ping")
         self.db = self.client[db_name]
+        self.status_message = f"Connected to MongoDB Atlas ({db_name})"
         
         self.users = MongoCollectionDict(self.db["users"])
         self.crop_calendars = MongoCollectionDict(self.db["crop_calendars"])
@@ -102,13 +108,25 @@ def init_store():
     # If MongoDB URI is configured and not forced to in-memory:
     if settings.MONGODB_URI and not settings.USE_IN_MEMORY_STORE:
         try:
-            logger.info("Connecting to MongoDB cluster...")
+            print("\n" + "=" * 60)
+            print("[Database] Connecting to MongoDB Atlas cluster...")
             mongo_store = MongoStore(settings.MONGODB_URI, settings.DATABASE_NAME)
-            logger.info("Successfully connected to MongoDB cluster!")
+            print(f"[Database] [SUCCESS] Connected to MongoDB Atlas cluster!")
+            print(f"[Database] Database Name: {settings.DATABASE_NAME}")
+            print(f"[Database] Persistent Collections: users, crop_calendars, saved_markets, bookmarked_schemes")
+            print("=" * 60 + "\n")
             return mongo_store
         except Exception as e:
-            logger.warning("MongoDB connection failed (%s). Falling back to InMemoryStore.", e)
+            print("\n" + "=" * 60)
+            print(f"[Database] [WARNING] Could not connect to MongoDB Atlas: {e}")
+            print("[Database] Falling back safely to InMemoryStore.")
+            print("=" * 60 + "\n")
             return InMemoryStore()
+
+    print("\n" + "=" * 60)
+    print("[Database] Running in In-Memory Mode (USE_IN_MEMORY_STORE=true).")
+    print("[Database] Pre-seeded demo farmer Rajesh Kumar is active.")
+    print("=" * 60 + "\n")
     return InMemoryStore()
 
 
