@@ -17,7 +17,6 @@ Agrova AI Farmer Query is a farmer-friendly AI assistant web app for crop guidan
 ## Project Structure
 - frontend/: React frontend app
 - backend/: FastAPI backend app
-- docker-compose.yml: optional container setup for local development
 
 ## Run Locally
 
@@ -35,11 +34,6 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
-```
-
-### Docker
-```bash
-docker compose up --build
 ```
 
 ## Deploy on Vercel
