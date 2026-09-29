@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime, date
 from pydantic import BaseModel, EmailStr, ConfigDict
-from typing import Optional, List
+from typing import Optional, List, Union
 
 # User Schemas
 class UserBase(BaseModel):
@@ -17,7 +17,7 @@ class UserLogin(BaseModel):
     password: str
 
 class UserResponse(UserBase):
-    id: uuid.UUID
+    id: Union[uuid.UUID, str]
     created_at: datetime
     
     model_config = ConfigDict(from_attributes=True)

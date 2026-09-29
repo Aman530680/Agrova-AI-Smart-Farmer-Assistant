@@ -1,8 +1,16 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from .env if present
-load_dotenv()
+# Search current directory, backend directory, and workspace root for .env
+for env_candidate in [
+    Path.cwd() / ".env",
+    Path(__file__).resolve().parent.parent.parent / ".env",
+    Path(__file__).resolve().parent.parent.parent.parent / ".env",
+]:
+    if env_candidate.exists():
+        load_dotenv(dotenv_path=env_candidate)
+        break
 
 
 class Settings:
